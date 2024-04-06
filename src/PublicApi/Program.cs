@@ -78,6 +78,7 @@ builder.Services.AddCors(options =>
             corsPolicyBuilder.WithOrigins(baseUrlConfig!.WebBase.Replace("host.docker.internal", "localhost").TrimEnd('/'));
             corsPolicyBuilder.AllowAnyMethod();
             corsPolicyBuilder.AllowAnyHeader();
+            corsPolicyBuilder.AllowAnyOrigin(); // Added for Cors error. In this way, access to Api from the Web application was provided.
         });
 });
 
