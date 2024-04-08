@@ -8,7 +8,7 @@ namespace Microsoft.eShopWeb.ApplicationCore.Entities.OrderAggregate;
 public class Order : BaseEntity, IAggregateRoot
 {
     #pragma warning disable CS8618 // Required by Entity Framework
-    private Order() {}
+    public Order() {}
 
     public Order(string buyerId, Address shipToAddress, List<OrderItem> items)
     {
@@ -21,10 +21,10 @@ public class Order : BaseEntity, IAggregateRoot
 
     }
 
-    public string BuyerId { get; private set; }
-    public DateTimeOffset OrderDate { get; private set; } = DateTimeOffset.Now;
-    public Address ShipToAddress { get; private set; }
-    public OrderStatus Status { get; private set; } // Added for order status
+    public string BuyerId { get; set; }
+    public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
+    public Address ShipToAddress { get; set; }
+    public OrderStatus Status { get; set; } // Added for order status
 
     // DDD Patterns comment
     // Using a private collection field, better for DDD Aggregate's encapsulation

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Microsoft.eShopWeb.ApplicationCore.Entities;
@@ -25,6 +26,19 @@ public class OrderService : IOrderService
         _uriComposer = uriComposer;
         _basketRepository = basketRepository;
         _itemRepository = itemRepository;
+    }
+
+    public async Task<List<Order>> AllOrder()
+    {
+        var result = await _orderRepository.ListAsync();
+        var order = result.Select(o => new Order
+        {
+            BuyerId = o.BuyerId,
+            OrderDate = o.OrderDate,
+            Status = o.Status,
+            ShipToAddress = o.ShipToAddress,
+        }).ToList();
+        return result;
     }
 
     public async Task CreateOrderAsync(int basketId, Address shippingAddress)
