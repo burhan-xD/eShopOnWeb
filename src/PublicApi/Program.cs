@@ -185,6 +185,8 @@ app.MapEndpoints();
 
 app.Logger.LogInformation("LAUNCHING PublicApi");
 
+//app.MapOrderItemDtoEndpoints();
+
 //app.MapOrderEndpoints();
 app.Run();
 

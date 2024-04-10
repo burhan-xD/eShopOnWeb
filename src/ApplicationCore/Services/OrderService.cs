@@ -41,6 +41,20 @@ public class OrderService : IOrderService
         return result;
     }
 
+    //public async Task<List<BlazorShared.Models.OrderModel>> GetAllModel()
+    //{
+    //    var result = await _orderRepository.ListAsync();
+    //    var allOrder = result.Select(o => new BlazorShared.Models.OrderModel
+    //    {
+    //        BuyerId = o.BuyerId, 
+    //        OrderDate = o.OrderDate, 
+    //        Status = o.Status.ToString(),
+            
+    //    });
+
+    //    return allOrder;
+    //}
+
     public async Task CreateOrderAsync(int basketId, Address shippingAddress)
     {
         var basketSpec = new BasketWithItemsSpecification(basketId);
@@ -64,4 +78,6 @@ public class OrderService : IOrderService
 
         await _orderRepository.AddAsync(order);
     }
+
+    
 }
